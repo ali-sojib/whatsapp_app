@@ -17,6 +17,8 @@ dependencies:
   firebase_auth: ^4.6.3
   firebase_storage: ^11.2.3
   cloud_firestore: ^4.8.1
+  country_picker: ^2.0.19
+  change_app_package_name: ^1.1.0
 
 dev_dependencies:
   flutter_test:

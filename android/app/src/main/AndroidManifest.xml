@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.whatsapp_app">
+    package="com.acadiya.kitakhbor">
    <application
         android:label="whatsapp_app"
         android:name="${applicationName}"
