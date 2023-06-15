@@ -19,6 +19,7 @@ dependencies:
   cloud_firestore: ^4.8.1
   country_picker: ^2.0.19
   change_app_package_name: ^1.1.0
+  flutter_riverpod: ^2.3.6
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,7 @@ flutter:
 
   assets:
     - assets/backgroundImage.png
+    - assets/bg.png    
   #   - images/a_dot_ham.jpeg
 
   # https://flutter.dev/assets-and-images/#resolution-aware
