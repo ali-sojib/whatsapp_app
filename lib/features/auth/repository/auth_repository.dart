@@ -26,21 +26,22 @@ class AuthRepository {
       await auth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
           verificationCompleted: (PhoneAuthCredential credential) async {
+            showSnackBar(context: context, content: 'verifyPhoneNumber');
             print(
-                '  verifyPhoneNumber { FailedFailedFailedFailedFailedFailedFailedFailed FailedFailedFailedFailed');
-
+                'verifyPhoneNumber rrrrrrrrrrvvvvvvvvvvvvvvvv verificationCompleted rrrrrrrrrrvvvvvvvvvvvvv');
             await auth.signInWithCredential(credential);
           },
           verificationFailed: (e) {
             showSnackBar(context: context, content: 'verificationFailed');
             print(
-                ' verificationFailed: (e) { FailedFailedFailedFailedFailedFailedFailedFailed FailedFailedFailedFailed');
+                'verificationFailed rrrrrrrrrrvvvvvvvvvvvvvvvv verificationFailed rrrrrrrrrrvvvvvvvvvvvvv');
+            print('print ${e.message}');
             throw Exception(e.message);
           },
           codeSent: ((String verificationId, int? resendingToken) async {
             showSnackBar(context: context, content: 'codeSent');
             print(
-                '  codeSent { FailedFailedFailedFailedFailedFailedFailedFailed FailedFailedFailedFailed');
+                'codeSent rrrrrrrrrvvvvvvvvvvvvvvvv codeSent rrrrrrrrrrvvvvvvvvvvvvv');
             Navigator.pushNamed(
               context,
               OTPScreen.routeName,
@@ -49,7 +50,7 @@ class AuthRepository {
           }),
           codeAutoRetrievalTimeout: (String verificationId) {
             print(
-                '  codeAutoRetrievalTimeout { FailedFailedFailedFailedFailedFailedFailedFailed FailedFailedFailedFailed');
+                'codeAutoRetrievalTimeout rrrrrrrrrrvvvvvvvvvvvvvvvv codeAutoRetrievalTimeout rrrrrrrrrrvvvvvvvvvvvvv');
             showSnackBar(context: context, content: 'codeAutoRetrievalTimeout');
           });
     } on FirebaseAuthException catch (e) {

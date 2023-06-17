@@ -17,30 +17,42 @@ class LoginScreen extends ConsumerStatefulWidget {
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final phoneController = TextEditingController();
-  Country? country;
+
+  Country country = Country(
+    phoneCode: "880",
+    countryCode: "BD",
+    e164Sc: 0,
+    geographic: true,
+    level: 1,
+    name: "Bangladesh",
+    example: "Bangladesh",
+    displayName: "Bangladesh",
+    displayNameNoCountryCode: "BD",
+    e164Key: "",
+  );
 
   @override
   void dispose() {
     super.dispose();
-    // phoneController.dispose();
+    phoneController.dispose();
   }
 
   void pickCountry() {
     showCountryPicker(
         context: context,
-        onSelect: (Country _country) {
+        onSelect: (Country country) {
           setState(() {
-            country = _country;
+            country = country;
           });
         });
   }
 
   void sendPhoneNumber() {
     String phoneNumber = phoneController.text.trim();
-    if (country != null && phoneNumber.isNotEmpty) {
+    if (phoneNumber.isNotEmpty) {
       ref
           .read(authControllerProvider)
-          .signInWhithPhoneInCrt(context, '+${country!.phoneCode}$phoneNumber');
+          .signInWhithPhoneInCrt(context, '+${country.phoneCode}$phoneNumber');
     } else {
       showSnackBar(context: context, content: 'Fill out all the fields');
     }
@@ -49,7 +61,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    /* 
+    phoneController.selection = TextSelection.fromPosition(
+      TextPosition(
+        offset: phoneController.text.length,
+      ),
+    );
+     */
     return Scaffold(
       appBar: AppBar(
         title: const Text('Enter your phone number'),
@@ -71,7 +89,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const SizedBox(height: 5),
               Row(
                 children: [
-                  if (country != null) Text('+${country!.phoneCode}'),
+                  if (country != null)
+                    Text("${country.flagEmoji} + ${country.phoneCode}"),
                   const SizedBox(width: 10),
                   SizedBox(
                     width: size.width * 0.7,
@@ -84,6 +103,78 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                 ],
               ),
+              /* TextFormField( 
+                cursorColor: Colors.white,
+                controller: phoneController,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    phoneController.text = value;
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: "Enter phone number",
+                  hintStyle: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                    color: Colors.grey.shade600,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black12),
+                  ),
+                  prefixIcon: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        showCountryPicker(
+                          context: context,
+                          countryListTheme: const CountryListThemeData(
+                            bottomSheetHeight: 550,
+                          ),
+                          onSelect: (value) {
+                            setState(() {
+                              country = value;
+                            });
+                          },
+                        );
+                      },
+                      child: Text(
+                        "${country.flagEmoji} + ${country.phoneCode}",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  suffixIcon: phoneController.text.length > 9
+                      ? Container(
+                          height: 30,
+                          width: 30,
+                          margin: const EdgeInsets.all(10.0),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.green,
+                          ),
+                          child: const Icon(
+                            Icons.done,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        )
+                      : null,
+                ),
+              ),
+              */
               SizedBox(height: size.height * 0.6),
               SizedBox(
                 width: 90,
