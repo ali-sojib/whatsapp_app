@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:70517563299:android:b93e275c8cfadf890f8416",
+        "mobilesdk_app_id": "1:70517563299:android:39ef7c91f43bf1080f8416",
         "android_client_info": {
-          "package_name": "com.example.whatsapp_app"
+          "package_name": "com.acadiya.kitakhbor"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "70517563299-l01fuj9ae67ajnurcmrlcc3fi7e174gf.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.whatsapp_app",
-            "certificate_hash": "ff39e970efb3f0b0a10b47ee08aedca71c096dac"
-          }
-        },
         {
           "client_id": "70517563299-lr4hv2hg8jinq1dbhrvchktb5b4bd8dm.apps.googleusercontent.com",
           "client_type": 3
