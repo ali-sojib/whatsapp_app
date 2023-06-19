@@ -20,4 +20,13 @@ class AuthController {
   void signInWhithPhoneInCrt(BuildContext context, String phoneNumber) {
     authRepository.signInWhithPhone(context, phoneNumber);
   }
+
+  void verifyOTPInCtr(
+      BuildContext context, String verificationId, String userOTP) {
+    authRepository.verifyOTP(
+      context: context,
+      verificationId: verificationId,
+      userOTP: userOTP,
+    );
+  }
 }

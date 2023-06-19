@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_app/common/utils/colors.dart';
+import 'package:whatsapp_app/features/auth/controller/auth_controller.dart';
 
 class OTPScreen extends ConsumerWidget {
   static const String routeName = '/otp-screen';
@@ -10,13 +11,13 @@ class OTPScreen extends ConsumerWidget {
     required this.verificationId,
   }) : super(key: key);
 
-  // void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
-  //   ref.read(authControllerProvider).verifyOTP(
-  //         context,
-  //         verificationId,
-  //         userOTP,
-  //       );
-  // }
+  void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
+    ref.read(authControllerProvider).verifyOTPInCtr(
+          context,
+          verificationId,
+          userOTP,
+        );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,7 +48,7 @@ class OTPScreen extends ConsumerWidget {
                 onChanged: (val) {
                   if (val.length == 6) {
                     print('verify');
-                    // verifyOTP(ref, context, val.trim());
+                    verifyOTP(ref, context, val.trim());
                   }
                 },
               ),

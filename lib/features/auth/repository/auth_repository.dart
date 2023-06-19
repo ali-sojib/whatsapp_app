@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_app/common/utils/utils.dart';
 import 'package:whatsapp_app/features/auth/screens/otp_screen.dart';
+import 'package:whatsapp_app/features/auth/screens/user_information_screen.dart';
 
 final authRepositoryProvider = Provider(
   (ref) => AuthRepository(
@@ -27,21 +28,15 @@ class AuthRepository {
           phoneNumber: phoneNumber,
           verificationCompleted: (PhoneAuthCredential credential) async {
             showSnackBar(context: context, content: 'verifyPhoneNumber');
-            print(
-                'verifyPhoneNumber rrrrrrrrrrvvvvvvvvvvvvvvvv verificationCompleted rrrrrrrrrrvvvvvvvvvvvvv');
             await auth.signInWithCredential(credential);
           },
           verificationFailed: (e) {
             showSnackBar(context: context, content: 'verificationFailed');
-            print(
-                'verificationFailed rrrrrrrrrrvvvvvvvvvvvvvvvv verificationFailed rrrrrrrrrrvvvvvvvvvvvvv');
             print('print ${e.message}');
             throw Exception(e.message);
           },
           codeSent: ((String verificationId, int? resendingToken) async {
             showSnackBar(context: context, content: 'codeSent');
-            print(
-                'codeSent rrrrrrrrrvvvvvvvvvvvvvvvv codeSent rrrrrrrrrrvvvvvvvvvvvvv');
             Navigator.pushNamed(
               context,
               OTPScreen.routeName,
@@ -49,10 +44,32 @@ class AuthRepository {
             );
           }),
           codeAutoRetrievalTimeout: (String verificationId) {
-            print(
-                'codeAutoRetrievalTimeout rrrrrrrrrrvvvvvvvvvvvvvvvv codeAutoRetrievalTimeout rrrrrrrrrrvvvvvvvvvvvvv');
             showSnackBar(context: context, content: 'codeAutoRetrievalTimeout');
           });
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context: context, content: e.message!);
+    }
+  }
+
+  void verifyOTP({
+    required BuildContext context,
+    required String verificationId,
+    required String userOTP,
+  }) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: userOTP,
+      );
+      print('inside inside insideverifyOTPinside inside inside ');
+      await auth.signInWithCredential(credential);
+      //my own line of ignore
+      // ignore: use_build_context_synchronously
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        UserInformationScreen.routeName,
+        (route) => false,
+      );
     } on FirebaseAuthException catch (e) {
       showSnackBar(context: context, content: e.message!);
     }
