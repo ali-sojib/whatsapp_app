@@ -5,7 +5,6 @@ class UserModel {
   final bool isOnline;
   final String phoneNumber;
   final List<String> groupId;
-
   UserModel({
     required this.name,
     required this.uid,

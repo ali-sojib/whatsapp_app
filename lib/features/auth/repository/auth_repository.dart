@@ -94,7 +94,7 @@ class AuthRepository {
           'https://png.pngitem.com/pimgs/s/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png';
 
       if (profilePic != null) {
-        String photoUrl = await ref
+        photoUrl = await ref
             .read(commonFirebaseStorageRepositoryProvider)
             .storeFileToFirebase(
               'profilePic/$uid',
@@ -107,7 +107,7 @@ class AuthRepository {
         uid: uid,
         profilePic: photoUrl,
         isOnline: true,
-        phoneNumber: FirebaseAuth.instance.currentUser!.uid,
+        phoneNumber: auth.currentUser!.uid,
         groupId: [],
       );
 
