@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:whatsapp_app/common/repositories/common_firebase_storage_repository.dart';
 import 'package:whatsapp_app/common/utils/utils.dart';
 import 'package:whatsapp_app/features/auth/controller/auth_controller.dart';
+import 'package:whatsapp_app/model/user_model.dart';
 
 class UserInformationScreen extends ConsumerStatefulWidget {
   static const String routeName = '/user-information';
@@ -29,7 +31,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
     setState(() {});
   }
 
-/*   void storeUserData() async {
+  void storeUserData() async {
     String name = nameController.text.trim();
 
     if (name.isNotEmpty) {
@@ -40,7 +42,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
           );
     }
   }
- */
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -90,8 +92,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    // storeUserData,
+                    onPressed: storeUserData,
                     icon: const Icon(
                       Icons.done,
                     ),
@@ -103,22 +104,5 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
         ),
       ),
     );
-  }
-
-  void saveUserDataToFirebase({
-    required String name,
-    required File? profilePic,
-    required ProviderRef ref,
-    required BuildContext context,
-  }) async {
-    try {
-      String uid = FirebaseAuth.instance.currentUser!.uid;
-      String photoUrl =
-          'https://png.pngitem.com/pimgs/s/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png';
-
-      if (profilePic != null) {}
-    } catch (e) {
-      showSnackBar(context: context, content: e.toString());
-    }
   }
 }
