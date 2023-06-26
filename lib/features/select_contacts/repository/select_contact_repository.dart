@@ -14,6 +14,7 @@ final selectContactRepositoryProvider = Provider(
 
 class SelectContactRepository {
   final FirebaseFirestore firestore;
+  String primaryNumber = '';
 
   SelectContactRepository({
     required this.firestore,
@@ -35,14 +36,53 @@ class SelectContactRepository {
   void selectContact(Contact selectedContact, BuildContext context) async {
     try {
       var userCollection = await firestore.collection('user').get();
-      bool isFoud = false;
+      bool isFound = false;
 
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
+        primaryNumber = selectedContact.phones[0].number;
+
+        contactNumberFormater(primaryNumber);
+
+        if (primaryNumber == userData.phoneNumber) {
+          isFound = true;
+          print('formattedNumber == userData.phoneNumber isFound true');
+
+          /* Navigator.pushNamed(
+            context,
+          ); */
+        }
+
         print('phone number clicked = ${selectedContact.phones[0].number}');
+      }
+
+      if (!isFound) {
+        showSnackBar(
+          context: context,
+          content: "This number did not dwonload this app",
+        );
       }
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }
+  }
+
+  void contactNumberFormater(String number) {
+    //to removing extra '-' and 'spaces'
+    String phoneNumber = number;
+
+    RegExp regExp =
+        RegExp(r'[^\d+]'); // Matches all non-digit characters except '+'
+
+    String formattedNumber = phoneNumber.replaceAll(regExp, '');
+
+    //adding bd country code which nubmer starting wih 01
+    if (formattedNumber.startsWith('01')) {
+      formattedNumber = '+88$formattedNumber';
+    }
+
+    primaryNumber = formattedNumber;
+
+    print('contactNumberFormater =' + primaryNumber);
   }
 }
