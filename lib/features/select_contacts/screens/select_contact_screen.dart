@@ -36,38 +36,36 @@ class SelectContactsScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Contact'),
-      ),
-      // ref.watch(getContactsProvider).when(
-      //       data: (contactList) => ListView.builder(
-      //           itemCount: contactList.length,
-      //           itemBuilder: (context, index) {
-      //             final contact = contactList[index];
-      //             return InkWell(
-      //               onTap: () => selectContact(ref, contact, context),
-      //               child: Padding(
-      //                 padding: const EdgeInsets.only(bottom: 8.0),
-      //                 child: ListTile(
-      //                   title: Text(
-      //                     contact.displayName,
-      //                     style: const TextStyle(
-      //                       fontSize: 18,
-      //                     ),
-      //                   ),
-      //                   leading: contact.photo == null
-      //                       ? null
-      //                       : CircleAvatar(
-      //                           backgroundImage: MemoryImage(contact.photo!),
-      //                           radius: 30,
-      //                         ),
-      //                 ),
-      //               ),
-      //             );
-      //           }),
-      //       error: (err, trace) => ErrorScreen(error: err.toString()),
-      //       loading: () => const Loader(),
-      //     ),
+      body: ref.watch(getContactsProvider).when(
+            data: (contactList) => ListView.builder(
+                itemCount: contactList.length,
+                itemBuilder: (context, index) {
+                  final contact = contactList[index];
+                  // return InkWell(
+                  //   onTap: () => selectContact(ref, contact, context),
+                  //   child:
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: ListTile(
+                      title: Text(
+                        contact.displayName,
+                        style: const TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      leading: contact.photo == null
+                          ? null
+                          : CircleAvatar(
+                              backgroundImage: MemoryImage(contact.photo!),
+                              radius: 30,
+                            ),
+                    ),
+                  );
+                  // );
+                }),
+            error: (err, trace) => ErrorScreen(error: err.toString()),
+            loading: () => const Loader(),
+          ),
     );
   }
 }
