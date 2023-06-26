@@ -5,16 +5,20 @@ import 'package:whatsapp_app/widgets/chat_list.dart';
 
 class MobileChatScreen extends StatelessWidget {
   static const routeName = '/mobile-chat-screen';
-  const MobileChatScreen({Key? key}) : super(key: key);
+  final String name;
+  final String uid;
+  const MobileChatScreen({
+    Key? key,
+    required this.name,
+    required this.uid,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBarColor,
-        title: Text(
-          info[0]['name'].toString(),
-        ),
+        title: Text(name),
         centerTitle: false,
         actions: [
           IconButton(

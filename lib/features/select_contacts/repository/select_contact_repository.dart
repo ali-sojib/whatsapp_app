@@ -50,7 +50,10 @@ class SelectContactRepository {
           print('formattedNumber == userData.phoneNumber isFound true');
 
           // ignore: use_build_context_synchronously
-          Navigator.pushNamed(context, MobileChatScreen.routeName);
+          Navigator.pushNamed(context, MobileChatScreen.routeName, arguments: {
+            'name': userData.name,
+            'uid': userData.uid,
+          });
         }
 
         print('phone number clicked = ${selectedContact.phones[0].number}');
