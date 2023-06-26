@@ -19,7 +19,7 @@ class LandingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 50),
+            SizedBox(height: size.height * .08),
             const Text(
               'Welcome to WhatsApp',
               style: TextStyle(
@@ -30,7 +30,7 @@ class LandingScreen extends StatelessWidget {
             SizedBox(height: size.height / 9),
             Image.asset(
               'assets/bg.png',
-              height: 340,
+              height: size.height * .35,
               width: 340,
               color: tabColor,
             ),
