@@ -5,6 +5,7 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_app/common/utils/utils.dart';
 import 'package:whatsapp_app/model/user_model.dart';
+import 'package:whatsapp_app/screens/mobile_chat_screen.dart';
 
 final selectContactRepositoryProvider = Provider(
   (ref) => SelectContactRepository(
@@ -48,9 +49,8 @@ class SelectContactRepository {
           isFound = true;
           print('formattedNumber == userData.phoneNumber isFound true');
 
-          /* Navigator.pushNamed(
-            context,
-          ); */
+          // ignore: use_build_context_synchronously
+          Navigator.pushNamed(context, MobileChatScreen.routeName);
         }
 
         print('phone number clicked = ${selectedContact.phones[0].number}');

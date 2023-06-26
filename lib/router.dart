@@ -4,6 +4,7 @@ import 'package:whatsapp_app/features/auth/screens/login_screen.dart';
 import 'package:whatsapp_app/features/auth/screens/otp_screen.dart';
 import 'package:whatsapp_app/features/auth/screens/user_information_screen.dart';
 import 'package:whatsapp_app/features/select_contacts/screens/select_contact_screen.dart';
+import 'package:whatsapp_app/screens/mobile_chat_screen.dart';
 // import 'package:whatsapp_app/features/group/screens/create_group_screen.dart';
 // import 'package:whatsapp_app/features/select_contacts/screens/select_contacts_screen.dart';
 // import 'package:whatsapp_app/features/chat/screens/mobile_chat_screen.dart';
@@ -32,20 +33,20 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const SelectContactsScreen(),
       );
-//     // case MobileChatScreen.routeName:
-//     //   final arguments = settings.arguments as Map<String, dynamic>;
-//     //   final name = arguments['name'];
-//     //   final uid = arguments['uid'];
-//     //   final isGroupChat = arguments['isGroupChat'];
-//     //   final profilePic = arguments['profilePic'];
-//     //   return MaterialPageRoute(
-//     //     builder: (context) => MobileChatScreen(
-//     //       name: name,
-//     //       uid: uid,
-//     //       isGroupChat: isGroupChat,
-//     //       profilePic: profilePic,
-//     //     ),
-//     //   );
+    case MobileChatScreen.routeName:
+      // final arguments = settings.arguments as Map<String, dynamic>;
+      // final name = arguments['name'];
+      // final uid = arguments['uid'];
+      // final isGroupChat = arguments['isGroupChat'];
+      // final profilePic = arguments['profilePic'];
+      return MaterialPageRoute(
+        builder: (context) => MobileChatScreen(
+            // name: name,
+            // uid: uid,
+            // isGroupChat: isGroupChat,
+            // profilePic: profilePic,
+            ),
+      );
 //     // case ConfirmStatusScreen.routeName:
 //     //   final file = settings.arguments as File;
 //     //   return MaterialPageRoute(
