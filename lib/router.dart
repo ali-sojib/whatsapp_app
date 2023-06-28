@@ -4,7 +4,7 @@ import 'package:whatsapp_app/features/auth/screens/login_screen.dart';
 import 'package:whatsapp_app/features/auth/screens/otp_screen.dart';
 import 'package:whatsapp_app/features/auth/screens/user_information_screen.dart';
 import 'package:whatsapp_app/features/select_contacts/screens/select_contact_screen.dart';
-import 'package:whatsapp_app/screens/mobile_chat_screen.dart';
+import 'package:whatsapp_app/features/chat/screens/mobile_chat_screen.dart';
 // import 'package:whatsapp_app/features/group/screens/create_group_screen.dart';
 // import 'package:whatsapp_app/features/select_contacts/screens/select_contacts_screen.dart';
 // import 'package:whatsapp_app/features/chat/screens/mobile_chat_screen.dart';
