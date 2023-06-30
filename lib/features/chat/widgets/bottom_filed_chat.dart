@@ -65,7 +65,6 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   //         toFile: path,
   //       );
   //     }
-
   //     setState(() {
   //       isRecording = !isRecording;
   //     });
